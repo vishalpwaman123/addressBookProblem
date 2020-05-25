@@ -39,4 +39,15 @@ public class testAddressBook {
         Assert.assertEquals("Vishal Wamankar", addressBookAnalyser.addPersonDetailsInFile(personDetails).iterator().next().getFullName());
     }
 
+    @Test
+    public void givenFileName_whenSavePersonDetails_shouldWriteIntoJson() {
+        try {
+            PersonDetails personDetails = new PersonDetails("Rahul", "Wamankar", "Kondhwa", "Pune", "Maharashtra", "411048", "7758039722");
+            Assert.assertEquals(true, addressBookAnalyser.save("MyAddress.json",addressBookAnalyser.addPersonDetailsInFile(personDetails)));
+        } catch (addressBookException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
