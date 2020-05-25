@@ -1,4 +1,4 @@
-package addressbook;
+package com.bridgelabz.addressbook;
 
 public class addressBookException extends Throwable {
 

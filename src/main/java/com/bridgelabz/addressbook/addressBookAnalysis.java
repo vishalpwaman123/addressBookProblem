@@ -1,4 +1,4 @@
-package addressbook;
+package com.bridgelabz.addressbook;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ public class addressBookAnalysis {
         try {
             if (fileName.length() == 0)
                 throw new addressBookException("File Name Cannot be empty", addressBookException.ExceptionType.ENTERED_EMPTY);
-            File files = new File("./src/main/java/com/bridgelabz/addressbook/json/" + fileName);
+            File files = new File("./src/main/java/com.bridgelabz.addressbook/json/" + fileName);
             boolean isFileExist = files.exists();
             if (isFileExist) {
                 return false;
