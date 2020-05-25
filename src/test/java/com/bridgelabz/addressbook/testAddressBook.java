@@ -27,4 +27,10 @@ public class testAddressBook {
         }
     }
 
+    @Test
+    public void givenFile_whenAddPersonDetails_shouldReturnPersonDetails() {
+        PersonDetails personDetails=new PersonDetails("Vishal", "Wamankar", "Kondhwa", "Pune", "Maharashtra", "411048", "7758039722");
+        Assert.assertEquals("7758039722", addressBookAnalyser.addPersonDetailsInFile(personDetails).iterator().next().getPhoneNumber());
+    }
+
 }
