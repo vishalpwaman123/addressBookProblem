@@ -11,6 +11,26 @@ public class PersonDetails {
     private String PhoneNumber ;
     public String fullName;
 
+    public String getZip() {
+        return Zip;
+    }
+
+    public String getState() {
+        return State;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public String getLastName() {
+        return LastName;
+    }
+
     public String getPhoneNumber() {
         return PhoneNumber;
     }
@@ -46,5 +66,34 @@ public class PersonDetails {
                 ", PhoneNumber=" + PhoneNumber +
                 '}';
     }
+
+    public void AssignFirstName(String firstName) {
+        FirstName = firstName;
+    }
+
+    public void AssignLastName(String lastName) {
+        LastName = lastName;
+    }
+
+    public void AssignAddress(String address) {
+        Address = address;
+    }
+
+    public void AssignCity(String city) {
+        City = city;
+    }
+
+    public void AssignState(String state) {
+        State = state;
+    }
+
+    public void AssignZip(String zip) {
+        Zip = zip;
+    }
+
+    public void AssignPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
+    }
+
 
 }

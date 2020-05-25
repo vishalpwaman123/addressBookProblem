@@ -70,10 +70,9 @@ public class addressBookAnalysis {
                 }
             }
 
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             throw new addressBookException("File Name Cannot be Null", addressBookException.ExceptionType.ENTERED_NULL);
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return personInformation;
@@ -81,7 +80,7 @@ public class addressBookAnalysis {
 
 
     public boolean checksizeofList(List<PersonDetails> list) {
-        if(list.size()!=0)
+        if (list.size() != 0)
             return true;
         return false;
     }
@@ -110,4 +109,31 @@ public class addressBookAnalysis {
         return false;
     }
 
+    public boolean editingPersonDetails(String phoneNumber, String fileName, PersonDetails personDetails) throws addressBookException {
+        List<PersonDetails> personList = readPersonInfo(fileName);
+        File file = new File("./src/main/java/com/bridgelabz/addressbook/json/" + fileName);
+        try {
+            for (PersonDetails person : personList) {
+                if (person.getPhoneNumber().equals(phoneNumber)) {
+                    person.AssignFirstName(personDetails.getFirstName());
+                    person.AssignLastName(personDetails.getLastName());
+                    person.AssignAddress(personDetails.getAddress());
+                    person.AssignCity(personDetails.getCity());
+                    person.AssignState(personDetails.getState());
+                    person.AssignZip(personDetails.getZip());
+                    person.AssignPhoneNumber(personDetails.getPhoneNumber());
+                    Gson gson = new Gson();
+                    String json = gson.toJson(personList);
+                    FileWriter writer = null;
+                    writer = new FileWriter(file);
+                    writer.write(json);
+                    writer.close();
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
