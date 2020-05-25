@@ -3,6 +3,8 @@ package com.bridgelabz.addressbook;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+
 public class testAddressBook {
 
     addressBookAnalysis addressBookAnalyser = new addressBookAnalysis();
@@ -49,5 +51,14 @@ public class testAddressBook {
         }
     }
 
+    @Test
+    public void givenFileName_whenReadPersonDetails_shouldReadPersonDetailsFromJson(){
+        try {
+            List<PersonDetails> list =addressBookAnalyser.readPersonInfo("MyAddress.json");
+            Assert.assertEquals(true,addressBookAnalyser.checksizeofList(list));
+        } catch (addressBookException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

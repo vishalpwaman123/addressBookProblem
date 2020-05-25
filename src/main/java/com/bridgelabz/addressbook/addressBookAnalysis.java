@@ -2,10 +2,9 @@ package com.bridgelabz.addressbook;
 
 import com.google.gson.Gson;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class addressBookAnalysis {
 
@@ -29,7 +28,7 @@ public class addressBookAnalysis {
 
     public ArrayList<PersonDetails> addPersonDetailsInFile(PersonDetails personDetails) {
         personInformation.add(personDetails);
-        return  personInformation;
+        return personInformation;
     }
 
 
@@ -55,4 +54,33 @@ public class addressBookAnalysis {
         }
         return false;
     }
+
+    public ArrayList<PersonDetails> readPersonInfo(String fileName) throws addressBookException {
+        try {
+            if (fileName.length() == 0)
+                throw new addressBookException("File Name Cannot be empty", addressBookException.ExceptionType.ENTERED_EMPTY);
+            File file = new File("./src/main/java/com/bridgelabz/addressbook/json/" + fileName);
+            if (file.exists()) {
+                Gson gson = new Gson();
+                BufferedReader br = null;
+                br = new BufferedReader(new FileReader(file));
+                PersonDetails[] personDetails = gson.fromJson(br, PersonDetails[].class);
+                for (int i = 0; i < personDetails.length; i++) {
+                    personInformation.add(personDetails[i]);
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return personInformation;
+    }
+
+
+    public boolean checksizeofList(List<PersonDetails> list) {
+        if(list.size()!=0)
+            return true;
+        return false;
+    }
+
 }
