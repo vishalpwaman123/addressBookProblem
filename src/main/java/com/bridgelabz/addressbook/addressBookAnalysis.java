@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -151,5 +152,25 @@ public class addressBookAnalysis {
                               .collect(Collectors.toCollection(ArrayList::new));
         this.save(fileName,sortedData);
         return sortedData;
+    }
+
+    public void printPersonDetails(String fileName) throws addressBookException {
+        try {
+            if (fileName.length() == 0)
+                throw new addressBookException("File Name Cannot be empty", addressBookException.ExceptionType.ENTERED_EMPTY);
+            File file = new File("./src/main/java/com/bridgelabz/addressbook/json/" + fileName);
+            if (file.exists()) {
+                Gson gson = new Gson();
+                BufferedReader br = null;
+                br = new BufferedReader(new FileReader(file));
+                PersonDetails[] personDetails = gson.fromJson(br, PersonDetails[].class);
+                System.out.println(Arrays.toString(personDetails));
+                for (int i = 0; i < personDetails.length; i++) {
+                    personInformation.add(personDetails[i]);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

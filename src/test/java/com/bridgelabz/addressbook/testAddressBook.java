@@ -149,5 +149,13 @@ public class testAddressBook {
         }
     }
 
+    @Test
+    public void givenFileName_whenPrintedPersonDetails_shouldPrintJsonFile() {
+        try {
+            addressBookAnalyser.printPersonDetails("MyAddress.json");
+        } catch (addressBookException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
