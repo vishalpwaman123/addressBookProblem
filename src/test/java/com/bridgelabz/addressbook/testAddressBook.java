@@ -119,4 +119,24 @@ public class testAddressBook {
         }
     }
 
+    @Test
+    public void givenFileName_whenSortPersonDetailsByName_shouldReturnSortedNameAtLast() {
+        try {
+            ArrayList<PersonDetails> sortedData=addressBookAnalyser.getFieldWiseSortedData(SortedByField.Parameter.FIRST_NAME,"MyAddress.json");
+            Assert.assertEquals("Vishal",sortedData.get(sortedData.size()-1).FirstName);
+        } catch (addressBookException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenFileName_whenSortPersonDetailsByZip_shouldReturnSortedNameAtFirst() {
+        try {
+            ArrayList<PersonDetails> sortedData=addressBookAnalyser.getFieldWiseSortedData(SortedByField.Parameter.ZIP,"MyAddress.json");
+            Assert.assertEquals("Amit",sortedData.get(0).FirstName);
+        } catch (addressBookException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
