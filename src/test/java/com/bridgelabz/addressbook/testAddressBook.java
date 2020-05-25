@@ -79,4 +79,13 @@ public class testAddressBook {
             Assert.assertEquals(addressBookException.ExceptionType.ENTERED_EMPTY,e.type);
         }
     }
+
+    @Test
+    public void givenNullFileName_whenReadPersonDetails_shouldReturnCustomException(){
+        try {
+            addressBookAnalyser.readPersonInfo(null);
+        } catch (addressBookException e) {
+            Assert.assertEquals(addressBookException.ExceptionType.ENTERED_NULL,e.type);
+        }
+    }
 }

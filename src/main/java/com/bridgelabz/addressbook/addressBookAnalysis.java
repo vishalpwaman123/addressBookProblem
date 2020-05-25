@@ -70,7 +70,10 @@ public class addressBookAnalysis {
                 }
             }
 
-        } catch (FileNotFoundException e) {
+        }catch (NullPointerException e) {
+            throw new addressBookException("File Name Cannot be Null", addressBookException.ExceptionType.ENTERED_NULL);
+        }
+        catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return personInformation;
