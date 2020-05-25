@@ -139,7 +139,15 @@ public class testAddressBook {
         }
     }
 
-
+    @Test
+    public void givenFileName_whenSortPersonDetailsByZip_shouldReturnSortedNameAtLast() {
+        try {
+            ArrayList<PersonDetails> sortedData=addressBookAnalyser.getFieldWiseSortedData(SortedByField.Parameter.ZIP,"MyAddress.json");
+            Assert.assertEquals("kalpesh",sortedData.get(sortedData.size()-1).FirstName);
+        } catch (addressBookException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
