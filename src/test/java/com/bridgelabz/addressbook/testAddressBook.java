@@ -158,4 +158,15 @@ public class testAddressBook {
         }
     }
 
+    @Test
+    public void givenNewFileName_whenSavedAs_shouldSavePersonDetails() {
+        try {
+            ArrayList<PersonDetails> personDetails = addressBookAnalyser.readPersonInfo("MyAddress.json");
+            Assert.assertEquals(true,addressBookAnalyser.saveAs("NewAddressBook.json",personDetails));
+        } catch (addressBookException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

@@ -140,17 +140,17 @@ public class addressBookAnalysis {
         return false;
     }
 
-    public ArrayList getFieldWiseSortedData(SortedByField.Parameter parameter,String fileName) throws addressBookException {
+    public ArrayList getFieldWiseSortedData(SortedByField.Parameter parameter, String fileName) throws addressBookException {
         List<PersonDetails> personList = readPersonInfo(fileName);
         Comparator<PersonDetails> personDetailsComparator;
-        if(personList ==null || personList.size()==0){
-            throw new addressBookException("No Data Found",addressBookException.ExceptionType.NO_FILE_FOUND);
+        if (personList == null || personList.size() == 0) {
+            throw new addressBookException("No Data Found", addressBookException.ExceptionType.NO_FILE_FOUND);
         }
         personDetailsComparator = SortedByField.getParameter(parameter);
-        ArrayList sortedData= personList.stream()
-                              .sorted(personDetailsComparator)
-                              .collect(Collectors.toCollection(ArrayList::new));
-        this.save(fileName,sortedData);
+        ArrayList sortedData = personList.stream()
+                .sorted(personDetailsComparator)
+                .collect(Collectors.toCollection(ArrayList::new));
+        this.save(fileName, sortedData);
         return sortedData;
     }
 
@@ -172,5 +172,28 @@ public class addressBookAnalysis {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean saveAs(String fileName, ArrayList<PersonDetails> personDetails) throws addressBookException {
+        try {
+            if (fileName.length() == 0)
+                throw new addressBookException("File Name Cannot be empty", addressBookException.ExceptionType.ENTERED_EMPTY);
+            File file = new File("./src/main/java/com/bridgelabz/addressbook/json/" + fileName);
+            if (file.exists()) {
+                System.out.println("Please give other file Name");
+                return false;
+            }
+            this.createFile(fileName);
+            Gson gson = new Gson();
+            String json = gson.toJson(personDetails);
+            FileWriter writer = null;
+            writer = new FileWriter("./src/main/java/com/bridgelabz/addressbook/json/" + fileName);
+            writer.write(json);
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 }
