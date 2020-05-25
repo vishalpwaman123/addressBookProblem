@@ -3,6 +3,7 @@ package com.bridgelabz.addressbook;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class testAddressBook {
@@ -107,4 +108,15 @@ public class testAddressBook {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenFileName_whenSortPersonDetailsByName_shouldReturnSortedNameAtFirst() {
+        try {
+            ArrayList<PersonDetails> sortedData=addressBookAnalyser.getFieldWiseSortedData(SortedByField.Parameter.FIRST_NAME,"MyAddress.json");
+            Assert.assertEquals("Akash",sortedData.get(0).FirstName);
+        } catch (addressBookException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
