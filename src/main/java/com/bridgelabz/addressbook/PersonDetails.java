@@ -19,6 +19,10 @@ public class PersonDetails {
         return fullName;
     }
 
+    public String getFirstName() {
+        return  FirstName;
+    }
+
     public PersonDetails(String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber) {
         FirstName = firstName;
         LastName = lastName;
@@ -42,6 +46,5 @@ public class PersonDetails {
                 ", PhoneNumber=" + PhoneNumber +
                 '}';
     }
-
 
 }

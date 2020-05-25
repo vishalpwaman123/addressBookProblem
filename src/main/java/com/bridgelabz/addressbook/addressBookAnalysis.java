@@ -86,4 +86,28 @@ public class addressBookAnalysis {
         return false;
     }
 
+    public boolean deletingPersonDetails(String fileName, String firstName) throws addressBookException {
+        try {
+            if (fileName.length() == 0)
+                throw new addressBookException("File Name Cannot be empty", addressBookException.ExceptionType.ENTERED_EMPTY);
+            File file = new File("./src/main/java/com/bridgelabz/addressbook/json/" + fileName);
+            List<PersonDetails> personDetailsList = readPersonInfo(fileName);
+            for (PersonDetails personDetails1 : personDetailsList) {
+                if (personDetails1.getFirstName().equals(firstName)) {
+                    personDetailsList.remove(personDetails1);
+                    Gson gson = new Gson();
+                    String json = gson.toJson(personDetailsList);
+                    FileWriter writer = new FileWriter(file);
+                    writer.write(json);
+                    writer.close();
+                    return true;
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
